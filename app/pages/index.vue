@@ -1,54 +1,21 @@
 <script setup lang="ts">
-import { useMotion } from "@vueuse/motion";
-import './index.css'
-
-const { data: page } = await useAsyncData("index", () =>
-  queryContent("/").findOne()
-);
-
-const customersRef = ref();
-const mainRef = ref();
-
-(function () {
-  const { variant } = useMotion(customersRef, {
-    initial: {
-      x: 0,
-      opacity: 1,
-    },
-    enter: {
-      x: -20,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        duration: 2000,
-        onComplete: () => {
-          variant.value = "levitate";
-        },
-      },
-    },
-    levitate: {
-      x: 20,
-      opacity: 1,
-      transition: {
-        duration: 2000,
-        repeat: Infinity,
-        repeatType: "mirror",
-      },
-    },
-  });
-})();
+const { data: page } = await useAsyncData('index', () => queryContent('/').findOne())
 
 useSeoMeta({
   title: page.value.title,
   ogTitle: page.value.title,
   description: page.value.description,
-  ogDescription: page.value.description,
-});
+  ogDescription: page.value.description
+})
 </script>
 
 <template>
   <div>
-    <ULandingHero :description="page.hero.description" :links="page.hero.links">
+    <ULandingHero
+      :title="page.hero.title"
+      :description="page.hero.description"
+      :links="page.hero.links"
+    >
       <template #headline>
         <UBadge
           v-if="page.hero.headline"
@@ -62,7 +29,10 @@ useSeoMeta({
             class="focus:outline-none"
             tabindex="-1"
           >
-            <span class="absolute inset-0" aria-hidden="true" />
+            <span
+              class="absolute inset-0"
+              aria-hidden="true"
+            />
           </NuxtLink>
 
           {{ page.hero.headline.label }}
@@ -73,41 +43,25 @@ useSeoMeta({
             class="ml-1 w-4 h-4 pointer-events-none"
           />
         </UBadge>
-        <div class="text-7xl font-bold text-black pt-12 typing">
-          {{ page.hero.title }}
-        </div>
       </template>
 
-      <img
-        v-if="page.landingImg"
-        :src="page.landingImg"
-        class="h-full w-full object-cover object-center rounded-xl"
-      />
+      <img v-if="page.landingImg" :src="page.landingImg" class="h-full w-full object-cover object-center rounded-xl" />
       <ImagePlaceholder v-else />
 
-      <!-- <ULandingLogos :title="page.logos.title" align="center" ref="contentRef">
+      <ULandingLogos
+        :title="page.logos.title"
+        align="center"
+      >
         <UIcon
           v-for="icon in page.logos.icons"
           :key="icon"
           :name="icon"
           class="w-12 h-12 lg:w-16 lg:h-16 flex-shrink-0 text-gray-900 dark:text-white"
         />
-      </ULandingLogos> -->
-      <div class="pt-2">
-        <div class="text-center font-black text-lg">{{ page.logos.title }}</div>
-        <ULandingLogos align="center" ref="customersRef">
-          <UIcon
-            v-for="icon in page.logos.icons"
-            :key="icon"
-            :name="icon"
-            class="w-12 h-12 lg:w-16 lg:h-16 flex-shrink-0 text-gray-900 dark:text-white"
-          />
-        </ULandingLogos>
-      </div>
+      </ULandingLogos>
     </ULandingHero>
 
     <ULandingSection
-      v-motion-pop-visible
       :title="page.features.title"
       :description="page.features.description"
       :headline="page.features.headline"
@@ -125,7 +79,6 @@ useSeoMeta({
     </ULandingSection>
 
     <ULandingSection
-      v-motion-slide-visible-left
       :title="page.pricing.title"
       :description="page.pricing.description"
       :headline="page.pricing.headline"
@@ -144,7 +97,6 @@ useSeoMeta({
     </ULandingSection>
 
     <ULandingSection
-      v-motion-slide-visible-right
       :headline="page.testimonials.headline"
       :title="page.testimonials.title"
       :description="page.testimonials.description"
@@ -163,15 +115,14 @@ useSeoMeta({
       </UPageColumns>
     </ULandingSection>
 
-    <ULandingSection
-      v-motion-slide-visible-left
-      class="bg-primary-50 dark:bg-primary-400 dark:bg-opacity-10"
-    >
-      <ULandingCTA v-bind="page.cta" :card="false" />
+    <ULandingSection class="bg-primary-50 dark:bg-primary-400 dark:bg-opacity-10">
+      <ULandingCTA
+        v-bind="page.cta"
+        :card="false"
+      />
     </ULandingSection>
 
     <ULandingSection
-      v-motion-slide-visible-right
       id="faq"
       :title="page.faq.title"
       :description="page.faq.description"
@@ -184,9 +135,9 @@ useSeoMeta({
           button: {
             label: 'font-semibold',
             trailingIcon: {
-              base: 'w-6 h-6',
-            },
-          },
+              base: 'w-6 h-6'
+            }
+          }
         }"
         class="max-w-4xl mx-auto"
       />
