@@ -87,7 +87,7 @@ useSeoMeta({
         </UBadge>
         <div class="flex justify-center pt-12">
           <div
-            class="text-7xl font-bold text-primary-300 flex items-center space-x-4"
+            class="text-5xl sm:text-7xl font-bold text-primary-300 lg:flex items-center space-x-4"
           >
             <div>Web3 Enthusiasts</div>
             <VueWriter :array="wordArr" class="text-primary-700" />
@@ -125,7 +125,7 @@ useSeoMeta({
             <UIcon
               :key="icon"
               :name="icon"
-              class="w-12 h-12 lg:w-16 lg:h-16 flex-shrink-0 text-gray-900 dark:text-white"
+              class="w-10 h-10 lg:w-16 lg:h-16 flex-shrink-0 text-gray-900 dark:text-white"
             />
           </div>
         </ULandingLogos>
