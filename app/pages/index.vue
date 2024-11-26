@@ -5,21 +5,22 @@ const { data: page } = await useAsyncData("index", () =>
   queryContent("/").findOne()
 );
 
-definePageMeta({
-  colorMode: "dark",
-});
-const wordArr = [
-  "Build",
-  "Bump",
-  "Bullet",
-  "Bolster",
-  "Brew",
-  "Beyond",
-  "Belief",
-];
 
-const customersRef = ref();
-const ctaRef = ref();
+definePageMeta({
+  colorMode: 'dark',
+})
+const wordArr = [
+  'Build',
+  'Bump',
+  'Bullet',
+  'Bolster',
+  'Brew',
+  'Beyond',
+  'Belief',
+]
+
+const customersRef = ref()
+const ctaRef = ref()
 
 onMounted(() => {
   const { variant } = useMotion(customersRef, {
@@ -31,10 +32,10 @@ onMounted(() => {
       x: -20,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: 'spring',
         duration: 2000,
         onComplete: () => {
-          variant.value = "levitate";
+          variant.value = 'levitate'
         },
       },
     },
@@ -44,18 +45,18 @@ onMounted(() => {
       transition: {
         duration: 2000,
         repeat: Infinity,
-        repeatType: "mirror",
+        repeatType: 'mirror',
       },
     },
-  });
-});
+  })
+})
 
 useSeoMeta({
   title: page.title,
   ogTitle: page.title,
   description: page.description,
   ogDescription: page.description,
-});
+})
 </script>
 
 <template>
