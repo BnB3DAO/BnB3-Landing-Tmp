@@ -21,7 +21,7 @@ useSeoMeta({
 <template>
   <AppHeader />
 
-  <UMain class="overflow-hidden">
+  <UMain class="overflow-x-auto">
     <NuxtPage />
   </UMain>
 
